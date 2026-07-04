@@ -4,10 +4,12 @@ Automated end-to-end tests for the checkout flow on [saucedemo.com](https://www.
 
 ## What is covered
 
-| Test | File | Description |
-|---|---|---|
-| Positive | `tests/test_checkout_flow.py` | Login → add product to cart → checkout → verify order confirmation |
+
+| Test     | File                              | Description                                                                |
+| -------- | --------------------------------- | -------------------------------------------------------------------------- |
+| Positive | `tests/test_checkout_flow.py`     | Login → add product to cart → checkout → verify order confirmation         |
 | Negative | `tests/test_checkout_negative.py` | Checkout is correctly blocked when a required field (Last Name) is missing |
+
 
 ## Project structure
 
@@ -27,20 +29,19 @@ saucedemo-automation/
 └── .github/workflows/playwright.yml   # CI pipeline (bonus)
 ```
 
-The suite follows the **Page Object Model**: each page of the app has its own class holding its locators and actions. Tests only call these methods and make assertions — no raw selectors inside test files, which keeps tests short and easy to maintain.
+The suite follows the **Page Object Model**: each page of the app has its own class holding its locators and actions.Tests interact with the application through page objects and perform assertions on the expected results, keeping test logic separate from page interactions.
 
 ## Setup
 
-**Prerequisites:** Python 3.9+ installed, VS Code (recommended, with the Python extension).
+**Prerequisites:** Python 3.9+ installed.
 
 1. Clone the repository and open it in VS Code:
-   ```bash
+  ```bash
    git clone <your-repo-url>
    cd saucedemo-automation
-   ```
-
+  ```
 2. Create and activate a virtual environment:
-   ```bash
+  ```bash
    python -m venv venv
 
    # Windows
@@ -48,50 +49,49 @@ The suite follows the **Page Object Model**: each page of the app has its own cl
 
    # macOS / Linux
    source venv/bin/activate
-   ```
-
+  ```
 3. Install dependencies:
-   ```bash
+  ```bash
    pip install -r requirements.txt
-   ```
-
+  ```
 4. Install the Playwright browser binaries (one-time step):
-   ```bash
-   playwright install
-   ```
+  ```bash
+   python -m playwright install
+  ```
+
+
 
 ## How to run the tests
 
 Run the full suite (headless, default browser is Chromium):
+
 ```bash
 pytest
 ```
 
 Run with the browser visible, useful while debugging:
+
 ```bash
 pytest --headed
 ```
 
 Run only the positive scenario:
+
 ```bash
 pytest tests/test_checkout_flow.py
 ```
 
 Run only the negative scenario:
+
 ```bash
 pytest tests/test_checkout_negative.py
 ```
 
 Run with a specific browser:
+
 ```bash
 pytest --browser firefox
 ```
-
-Get a detailed HTML report:
-```bash
-pytest --html=report.html --self-contained-html
-```
-*(requires `pip install pytest-html` first)*
 
 If a test fails, a screenshot is automatically saved to the `screenshots/` folder — see `conftest.py`.
 
