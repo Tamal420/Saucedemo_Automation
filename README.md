@@ -11,22 +11,24 @@ Automated end-to-end tests for the checkout flow on [saucedemo.com](https://www.
 | Negative | `tests/test_checkout_negative.py` | Checkout is correctly blocked when a required field (Last Name) is missing |
 
 
+
+
 ## Project structure
 
 ```
 saucedemo-automation/
-├── pages/                      # Page Object Model — one class per page
+├── pages/                      
 │   ├── login_page.py
 │   ├── inventory_page.py
 │   ├── cart_page.py
 │   └── checkout_page.py
 ├── tests/
-│   ├── test_checkout_flow.py       # positive scenario
-│   └── test_checkout_negative.py   # negative scenario
-├── conftest.py                 # auto screenshot on test failure
+│   ├── test_checkout_flow.py      
+│   └── test_checkout_negative.py   
+├── conftest.py                 
 ├── pytest.ini
 ├── requirements.txt
-└── .github/workflows/playwright.yml   # CI pipeline (bonus)
+
 ```
 
 The suite follows the **Page Object Model**: each page of the app has its own class holding its locators and actions.Tests interact with the application through page objects and perform assertions on the expected results, keeping test logic separate from page interactions.
@@ -94,10 +96,6 @@ pytest --browser firefox
 ```
 
 If a test fails, a screenshot is automatically saved to the `screenshots/` folder — see `conftest.py`.
-
-## Continuous Integration (bonus)
-
-A GitHub Actions workflow is included at `.github/workflows/playwright.yml`. It runs the full suite automatically on every push and pull request to `main`, and uploads screenshots as build artifacts if any test fails.
 
 ## Notes on test data
 
