@@ -4,7 +4,7 @@ from playwright.sync_api import Page
 
 
 class LoginPage:
-    """Represents the login page and the actions a user can perform on it."""
+  
 
     URL = "https://www.saucedemo.com/"
 
@@ -20,7 +20,7 @@ class LoginPage:
         self.page.goto(self.URL)
 
     def login(self, username: str, password: str):
-        """Fill in credentials and submit the login form."""
+      
         self.username_input.fill(username)
         self.password_input.fill(password)
         self.login_button.click()

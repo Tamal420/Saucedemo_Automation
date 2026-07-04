@@ -1,5 +1,3 @@
-"""Shared pytest configuration and hooks for the test suite."""
-
 import os
 
 import pytest

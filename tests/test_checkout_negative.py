@@ -12,7 +12,7 @@ PRODUCT_NAME = "Sauce Labs Backpack"
 
 class TestCheckoutNegative:
     def test_checkout_blocked_when_last_name_is_missing(self, page):
-        # Arrange: log in and get a product into the cart
+        # Log in and get a product into the cart
         login_page = LoginPage(page)
         login_page.open()
         login_page.login(VALID_USERNAME, VALID_PASSWORD)
@@ -24,12 +24,12 @@ class TestCheckoutNegative:
         cart_page = CartPage(page)
         cart_page.go_to_checkout()
 
-        # Act: submit the checkout form without a last name
+        # Submit the checkout form without a last name
         checkout_info_page = CheckoutInfoPage(page)
         checkout_info_page.fill_information(first_name="Tamal", postal_code="1207")
         checkout_info_page.click_continue()
 
-        # Assert: the app must reject the submission with a clear error
+        # The app must reject the submission with a clear error
         error_text = checkout_info_page.error_message.text_content()
         assert error_text == "Error: Last Name is required", (
             f"Unexpected error message: '{error_text}'"

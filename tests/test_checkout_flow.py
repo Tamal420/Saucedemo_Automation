@@ -1,4 +1,4 @@
-"""Positive scenario: a user can log in, add a product, and complete checkout."""
+
 
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
